@@ -1,0 +1,5 @@
+package com.example.daybright
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()

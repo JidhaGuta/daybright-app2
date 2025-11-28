@@ -1,16 +1,39 @@
-# daybright
+DayBright - Daily Productivity App
+A Flutter-based mobile application designed to boost your daily productivity and mental well-being.
 
-A new Flutter project.
+🌟 Key Features
+  🔐 User Authentication
 
-## Getting Started
+    🚀Secure login and registration
+    
+    🚀User profile management
+    
+    🚀Work type categorization
+    
+    🎨 Customizable Themes
+    
+    🚀Light/Dark mode toggle
+    
+    🚀Multiple primary color options
+    
+    🚀Personalized appearance
 
-This project is a starting point for a Flutter application.
+  📊 Dashboard Features
 
-A few resources to get you started if this is your first Flutter project:
+      🚀Daily Motivational Quotes
+      
+      🚀AI-generated Task Suggestions
+      
+      🚀Mood Tracking
+      
+      🚀Streak Tracking
+      
+      🚀Calendar Reminders
+      
+      🚀AI Chat Assistant
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+  Demo Login
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  🚀Email: hiree@gmail.com / jane@example.com
+  
+  🚀Password: password123

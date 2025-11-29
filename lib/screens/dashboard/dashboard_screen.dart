@@ -262,195 +262,212 @@ class _DashboardScreenState extends State<DashboardScreen>
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Welcome Section with Animation
-              SlideTransition(
-                position: _slideAnimation,
-                child: FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: _primaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: _primaryColor.withOpacity(0.3)),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Welcome Section with Animation
+                SlideTransition(
+                  position: _slideAnimation,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: _primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: _primaryColor.withOpacity(0.3),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          // Welcome Icon
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: _primaryColor.withOpacity(0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.waving_hand,
+                              size: 32,
+                              color: _primaryColor,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          // Welcome Text
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Welcome back,',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey[700],
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  user?.fullName ?? 'User',
+                                  style: TextStyle(
+                                    fontSize: 24, // Reduced from 28
+                                    fontWeight: FontWeight.bold,
+                                    color: _primaryColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Ready to make today amazing!',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+                  ),
+                ),
+                const SizedBox(height: 20), // Reduced from 32
+                // Current Theme Info
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12), // Reduced padding
                     child: Row(
                       children: [
-                        // Welcome Icon
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: _primaryColor.withOpacity(0.2),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.waving_hand,
-                            size: 32,
-                            color: _primaryColor,
-                          ),
+                        Icon(
+                          _currentThemeMode == ThemeMode.dark
+                              ? Icons.dark_mode
+                              : Icons.light_mode,
+                          color: _primaryColor,
+                          size: 20, // Smaller icon
                         ),
-                        const SizedBox(width: 16),
-                        // Welcome Text
+                        const SizedBox(width: 8), // Reduced spacing
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Welcome back,',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.grey[700],
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                user?.fullName ?? 'User',
-                                style: TextStyle(
-                                  fontSize: 28,
+                                'Theme: ${_currentThemeMode == ThemeMode.dark ? 'Dark' : 'Light'}',
+                                style: const TextStyle(
+                                  fontSize: 14, // Smaller font
                                   fontWeight: FontWeight.bold,
-                                  color: _primaryColor,
                                 ),
                               ),
-                              const SizedBox(height: 4),
                               Text(
-                                'Ready to make today amazing? 🌟',
+                                'Color: ${_primaryColor.value.toRadixString(16).toUpperCase()}',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 10, // Smaller font
                                   color: Colors.grey[600],
-                                  fontStyle: FontStyle.italic,
                                 ),
                               ),
                             ],
                           ),
                         ),
+                        Chip(
+                          label: Text(
+                            _currentThemeMode == ThemeMode.dark
+                                ? 'DARK'
+                                : 'LIGHT',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10, // Smaller font
+                            ),
+                          ),
+                          backgroundColor: _primaryColor,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                          ), // Less padding
+                        ),
                       ],
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 32),
+                const SizedBox(height: 16),
 
-              // Current Theme Info
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Icon(
-                        _currentThemeMode == ThemeMode.dark
-                            ? Icons.dark_mode
-                            : Icons.light_mode,
-                        color: _primaryColor,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Current Theme: ${_currentThemeMode == ThemeMode.dark ? 'Dark' : 'Light'}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'Primary Color: ${_primaryColor.value.toRadixString(16).toUpperCase()}',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                          ],
+                // Features Grid with constrained height
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height * 0.5,
+                  ),
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12, // Reduced spacing
+                      mainAxisSpacing: 12, // Reduced spacing
+                      childAspectRatio: 1.1, // Slightly more compact
+                      shrinkWrap: true, // Important for SingleChildScrollView
+                      physics:
+                          const NeverScrollableScrollPhysics(), // Important for SingleChildScrollView
+                      children: [
+                        // Daily Motivational Quote
+                        _FeatureCard(
+                          icon: Icons.psychology,
+                          title: 'Daily Motivational\nQuote',
+                          color: _primaryColor,
+                          onTap: () =>
+                              _navigateToFeature('Daily Motivational Quote'),
                         ),
-                      ),
-                      Chip(
-                        label: Text(
-                          _currentThemeMode == ThemeMode.dark
-                              ? 'DARK'
-                              : 'LIGHT',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
+
+                        // AI-generated daily tasks
+                        _FeatureCard(
+                          icon: Icons.auto_awesome,
+                          title: 'AI-generated\nDaily Tasks',
+                          color: _primaryColor,
+                          onTap: () =>
+                              _navigateToFeature('AI-generated Daily Tasks'),
                         ),
-                        backgroundColor: _primaryColor,
-                      ),
-                    ],
+
+                        // Mood tracker
+                        _FeatureCard(
+                          icon: Icons.sentiment_satisfied_alt,
+                          title: 'Mood\nTracker',
+                          color: _primaryColor,
+                          onTap: () => _navigateToFeature('Mood Tracker'),
+                        ),
+
+                        // Streak tracker
+                        _FeatureCard(
+                          icon: Icons.local_fire_department,
+                          title: 'Streak\nTracker',
+                          color: _primaryColor,
+                          onTap: () => _navigateToFeature('Streak Tracker'),
+                        ),
+
+                        // Calendar reminders
+                        _FeatureCard(
+                          icon: Icons.calendar_today,
+                          title: 'Calendar\nReminders',
+                          color: _primaryColor,
+                          onTap: () => _navigateToFeature('Calendar Reminders'),
+                        ),
+
+                        // AI chat
+                        _FeatureCard(
+                          icon: Icons.chat,
+                          title: 'AI Chat\nAssistant',
+                          color: _primaryColor,
+                          onTap: () => _navigateToFeature('AI Chat'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16),
 
-              // Features Grid
-              Expanded(
-                child: FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 1.2,
-                    children: [
-                      // Daily Motivational Quote
-                      _FeatureCard(
-                        icon: Icons.psychology,
-                        title: 'Daily Motivational\nQuote',
-                        color: _primaryColor,
-                        onTap: () =>
-                            _navigateToFeature('Daily Motivational Quote'),
-                      ),
-
-                      // AI-generated daily tasks
-                      _FeatureCard(
-                        icon: Icons.auto_awesome,
-                        title: 'AI-generated\nDaily Tasks',
-                        color: _primaryColor,
-                        onTap: () =>
-                            _navigateToFeature('AI-generated Daily Tasks'),
-                      ),
-
-                      // Mood tracker
-                      _FeatureCard(
-                        icon: Icons.sentiment_satisfied_alt,
-                        title: 'Mood\nTracker',
-                        color: _primaryColor,
-                        onTap: () => _navigateToFeature('Mood Tracker'),
-                      ),
-
-                      // Streak tracker
-                      _FeatureCard(
-                        icon: Icons.local_fire_department,
-                        title: 'Streak\nTracker',
-                        color: _primaryColor,
-                        onTap: () => _navigateToFeature('Streak Tracker'),
-                      ),
-
-                      // Calendar reminders
-                      _FeatureCard(
-                        icon: Icons.calendar_today,
-                        title: 'Calendar\nReminders',
-                        color: _primaryColor,
-                        onTap: () => _navigateToFeature('Calendar Reminders'),
-                      ),
-
-                      // AI chat
-                      _FeatureCard(
-                        icon: Icons.chat,
-                        title: 'AI Chat\nAssistant',
-                        color: _primaryColor,
-                        onTap: () => _navigateToFeature('AI Chat'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+                // Add some bottom padding for better scrolling
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -469,7 +486,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   }
 }
 
-// Feature Card Widget
+// Feature Card Widget - Made more compact
 class _FeatureCard extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -486,32 +503,38 @@ class _FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: 3, // Reduced elevation
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12), // Slightly smaller radius
+      ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12), // Reduced padding
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Icon
+              // Icon - Smaller
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(10), // Reduced padding
                 decoration: BoxDecoration(
                   color: color.withOpacity(0.2),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(icon, size: 32, color: color),
+                child: Icon(
+                  icon,
+                  size: 28, // Smaller icon
+                  color: color,
+                ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 8), // Reduced spacing
               // Title
               Text(
                 title,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 14, // Smaller font
                   fontWeight: FontWeight.w600,
                 ),
               ),

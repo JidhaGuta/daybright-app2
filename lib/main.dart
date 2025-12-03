@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
+import 'screens/dashboard/quote_screen.dart'; // Add this import
 import 'services/auth_service.dart';
 
 void main() {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const AuthWrapper(),
         '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardScreen(),
+        '/quotes': (context) => const QuoteScreen(), // Add this route
       },
       debugShowCheckedModeBanner: false,
     );

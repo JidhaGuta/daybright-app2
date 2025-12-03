@@ -180,7 +180,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _selectedWorkType,
+                initialValue: _selectedWorkType,
                 decoration: const InputDecoration(
                   labelText: 'Work Type',
                   border: OutlineInputBorder(),

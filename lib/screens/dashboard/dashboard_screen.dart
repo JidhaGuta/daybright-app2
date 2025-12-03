@@ -106,7 +106,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                       });
                       Navigator.pop(context);
                     },
-                    activeColor: _primaryColor,
+                    activeThumbColor: _primaryColor,
                   ),
                 ],
               ),
